@@ -31,10 +31,15 @@ func main() {
 		log.Fatalf("Unable to retrieve data from sheet: %v", err)
 	}
 
+	// Create a slice to hold the rows
+	var rows [][]interface{}
+
 	// Print the values from the response
 	if len(resp.Values) > 0 {
 		fmt.Println("Data from sheet:")
 		for _, row := range resp.Values {
+			// Add the row to the slice
+			rows = append(rows, row)
 			for _, cell := range row {
 				fmt.Printf("%v\t", cell)
 			}
@@ -43,4 +48,7 @@ func main() {
 	} else {
 		fmt.Println("No data found.")
 	}
+
+	// Print the rows slice
+	fmt.Println(rows)
 }
