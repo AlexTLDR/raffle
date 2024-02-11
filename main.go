@@ -38,12 +38,22 @@ func main() {
 	if len(resp.Values) > 0 {
 		fmt.Println("Data from sheet:")
 		for _, row := range resp.Values {
-			// Add the row to the slice
-			rows = append(rows, row)
+			// Check if the row is empty
+			isEmpty := true
 			for _, cell := range row {
-				fmt.Printf("%v\t", cell)
+				if cell != "" {
+					isEmpty = false
+					break
+				}
 			}
-			fmt.Println()
+			// If the row is not empty, add it to the slice
+			if !isEmpty {
+				rows = append(rows, row)
+				for _, cell := range row {
+					fmt.Printf("%v\t", cell)
+				}
+				fmt.Println()
+			}
 		}
 	} else {
 		fmt.Println("No data found.")
