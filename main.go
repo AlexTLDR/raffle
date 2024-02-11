@@ -19,7 +19,7 @@ const numWinners = 5
 
 func main() {
 
-	// Forgetting the credentials, use the below article
+	// For getting the credentials, use the below article
 	// https://medium.com/@a.marenkov/how-to-get-credentials-for-google-sheets-456b7e88c430
 	credentialsFile := "gsheets-16Xh3_KIqn9A6MGE2cLijKym7bvf9dR4W8tK3qcFBCng.json"
 	spreadsheetID := "16Xh3_KIqn9A6MGE2cLijKym7bvf9dR4W8tK3qcFBCng"
@@ -101,7 +101,7 @@ func main() {
 
 // clear clears the terminal
 func clear() {
-	time.Sleep(2 * time.Second)
+	time.Sleep(5 * time.Second)
 	if runtime.GOOS == "windows" {
 		cmd := exec.Command("cmd", "/c", "cls")
 		cmd.Stdout = os.Stdout
