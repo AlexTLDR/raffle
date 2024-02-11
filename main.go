@@ -32,23 +32,25 @@ func main() {
 	}
 
 	// Create a slice to hold the rows
-	var rows [][]interface{}
+	var rows [][]string
 
 	// Print the values from the response
 	if len(resp.Values) > 0 {
 		fmt.Println("Data from sheet:")
 		for _, row := range resp.Values {
+			strRow := make([]string, len(row))
 			// Check if the row is empty
 			isEmpty := true
-			for _, cell := range row {
-				if cell != "" {
+			for i, cell := range row {
+				str, ok := cell.(string)
+				if ok && str != "" {
 					isEmpty = false
-					break
+					strRow[i] = str
 				}
 			}
 			// If the row is not empty, add it to the slice
 			if !isEmpty {
-				rows = append(rows, row)
+				rows = append(rows, strRow)
 				for _, cell := range row {
 					fmt.Printf("%v\t", cell)
 				}
