@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"context"
+	"encoding/csv"
 	"fmt"
 	"log"
 	"math/rand"
@@ -87,6 +88,16 @@ func main() {
 
 	// Check if there are enough rows
 	if len(rows) >= numWinners {
+		// Create a CSV file
+		file, err := os.Create("winners.csv")
+		if err != nil {
+			log.Fatalf("Failed to create file: %v", err)
+		}
+		defer file.Close()
+
+		writer := csv.NewWriter(file)
+		defer writer.Flush()
+
 		// Select the winners
 		for i := 0; i < numWinners; i++ {
 			fmt.Println("Drum roll please...")
@@ -95,6 +106,12 @@ func main() {
 			index := r.Intn(len(rows))
 			winner := rows[index]
 			fmt.Printf("Winner %d is: username: %s, email: %s\n", i+1, winner[0], winner[1])
+
+			// Write the winner to the CSV file
+			err := writer.Write(winner)
+			if err != nil {
+				log.Fatalf("Failed to write to file: %v", err)
+			}
 
 			// Remove the winner from the rows slice
 			rows = append(rows[:index], rows[index+1:]...)
