@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 	"time"
 
 	"google.golang.org/api/option"
@@ -60,6 +61,10 @@ func main() {
 				str, ok := cell.(string)
 				if ok && str != "" {
 					isEmpty = false
+					// Convert the name to lowercase to eliminate duplicates like alex or Alex
+					if i == 0 {
+						str = strings.ToLower(str)
+					}
 					strRow[i] = str
 				}
 			}
