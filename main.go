@@ -44,12 +44,15 @@ func main() {
 	// I believe that for this example, slices of interface{} would complicate things unnecessarily
 	var rows [][]string
 
+	// Create a map to hold the unique names
+	names := make(map[string]bool)
+
 	// Print the values from the response
 	if len(resp.Values) > 0 {
 		fmt.Println("Data from sheet:")
 		for _, row := range resp.Values {
+			// Convert the row to a slice of strings
 			strRow := make([]string, len(row))
-			// Check if the row is empty
 			isEmpty := true
 			for i, cell := range row {
 				str, ok := cell.(string)
@@ -58,10 +61,11 @@ func main() {
 					strRow[i] = str
 				}
 			}
-			// If the row is not empty, add it to the slice
-			if !isEmpty {
+			// If the row is not empty and the name is unique, add it to the slice
+			if !isEmpty && !names[strRow[0]] {
+				names[strRow[0]] = true
 				rows = append(rows, strRow)
-				for _, cell := range row {
+				for _, cell := range strRow {
 					fmt.Printf("%v\t", cell)
 				}
 				fmt.Println()
