@@ -18,7 +18,8 @@ import (
 )
 
 // Number of winners to select
-const numWinners = 5
+const numWinners = 6
+const specialPrize = "Ultimate Go Bundle"
 
 func main() {
 
@@ -108,7 +109,15 @@ func main() {
 
 			index := r.Intn(len(rows))
 			winner := rows[index]
-			fmt.Printf("Winner %d is: username: %s\n", i+1, winner[0])
+
+			// Check if this is the last winner
+			if i == numWinners-1 {
+				fmt.Printf("The %s goes to: %s\n", specialPrize, winner[0])
+				// Add a mark to indicate that this is a special winner
+				winner = append(winner, specialPrize)
+			} else {
+				fmt.Printf("Winner %d is: %s\n", i+1, winner[0])
+			}
 
 			// Write the winner to the CSV file
 			err := writer.Write(winner)
