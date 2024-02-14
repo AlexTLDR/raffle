@@ -61,7 +61,7 @@ func main() {
 				str, ok := cell.(string)
 				if ok && str != "" {
 					isEmpty = false
-					// Convert the name to lowercase to eliminate duplicates like alex or Alex
+					// Convert the name to lowercase
 					if i == 0 {
 						str = strings.ToLower(str)
 					}
@@ -72,10 +72,8 @@ func main() {
 			if !isEmpty && !names[strRow[0]] {
 				names[strRow[0]] = true
 				rows = append(rows, strRow)
-				for _, cell := range strRow {
-					fmt.Printf("%v\t", cell)
-				}
-				fmt.Println()
+				// Print only the name
+				fmt.Println(strRow[0])
 			}
 		}
 	} else {
@@ -83,7 +81,7 @@ func main() {
 	}
 
 	// Print the rows slice
-	fmt.Println(rows)
+	//fmt.Println(rows)
 
 	// Seed the random number generator
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
@@ -110,7 +108,7 @@ func main() {
 
 			index := r.Intn(len(rows))
 			winner := rows[index]
-			fmt.Printf("Winner %d is: username: %s, email: %s\n", i+1, winner[0], winner[1])
+			fmt.Printf("Winner %d is: username: %s\n", i+1, winner[0])
 
 			// Write the winner to the CSV file
 			err := writer.Write(winner)
