@@ -112,11 +112,11 @@ func main() {
 
 			// Check if this is the last winner
 			if i == numWinners-1 {
-				fmt.Printf("The %s goes to: %s\n", specialPrize, winner[0])
+				fmt.Printf("The %s goes to: %s\n\n", specialPrize, winner[0])
 				// Add a mark to indicate that this is a special winner
 				winner = append(winner, specialPrize)
 			} else {
-				fmt.Printf("Winner %d is: %s\n", i+1, winner[0])
+				fmt.Printf("Winner %d is: %s\n\n", i+1, winner[0])
 			}
 
 			// Write the winner to the CSV file
