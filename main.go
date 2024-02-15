@@ -105,7 +105,7 @@ func main() {
 		// Select the winners
 		for i := 0; i < numWinners; i++ {
 			fmt.Println("Drum roll please...")
-			time.Sleep(5 * time.Second)
+			time.Sleep(3 * time.Second)
 
 			index := r.Intn(len(rows))
 			winner := rows[index]
