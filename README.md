@@ -1,4 +1,4 @@
-Created this to use for Stuttgart Gophers Meetup *Go Meetup #2 - Testing and fuzzing*
+Created this to use for Stuttgart Gophers Meetup *raffles*
 
 Form to be used -> https://forms.gle/ccAGXmDeteWcV6j38
 

@@ -18,7 +18,7 @@ import (
 )
 
 // Number of winners to select
-const numWinners = 6
+const numWinners = 1
 const specialPrize = "Ultimate Go Bundle"
 
 func main() {
